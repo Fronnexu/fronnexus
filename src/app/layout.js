@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${inter.variable} font-sans`}>
-      <body className="antialiased">{children}
+      <body className="antialiased">
         <Header />
          <main className="flex-grow">
           {children}

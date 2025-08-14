@@ -1,0 +1,54 @@
+import Link from "next/link";
+import Image from "next/image";
+
+export default function Footer() {
+    return (
+        <footer className="p-6  w-full bg-background  ">
+            <div className="flex justify-between items-center w-full md:w-auto md:order-1">
+                <Image
+                    src="assets/icons/logo.svg"
+                    alt="Logo da empresa"
+                    width={150}
+                    height={150}
+                    className="mb-4 md:mb-0"
+                />
+                <div className="flex gap-2.5">
+                    <Link href="" target="_blank">
+                        <Image src="/assets/icons/instagram.svg" alt="Instagram" width={24} height={24} />
+                    </Link>
+                    <Link href="" target="_blank">
+                        <Image src="/assets/icons/whatsapp.svg" alt="Whatsapp" width={24} height={24} />
+                    </Link>
+
+                    <Link href="" target="_blank">
+                        <Image src="/assets/icons/linkedin.svg" alt="linkedin" width={24} height={24} />
+                    </Link>
+
+                    <Link href="" target="_blank">
+                        <Image src="/assets/icons/facebook.svg" alt="facebook" width={24} height={24} />
+                    </Link>
+
+                    <Link href="" target="_blank">
+                        <Image src="/assets/icons/github.svg" alt="github" width={24} height={24} />
+                    </Link>
+                </div>
+            </div>
+            <div className="flex  flex-col md:justify-between md:flex-row md:items-center md:gap-6 mt-6 md:mt-0 md:order-2">
+                <div className="mt-6 md:mt-0 text-sm text-primary md:ml-6 order-2 md:order-1">
+                    © {new Date().getFullYear()} Fronnexus. All rights reserved.
+                </div>
+                 <nav className="order-1 md:order-2">
+                    <ul className="space-y-2 ml-4 gap-2.5 md:flex md:space-y-0 md:space-x-6">
+                        <li><Link href="/" className="text-primary  p-2 md:p-0">Home</Link></li>
+                        <li><Link href="/services" className="text-primary p-2 md:p-0">Services</Link></li>
+                        <li><Link href="/about" className="text-primary p-2 md:p-0">About Us</Link></li>
+                        <li><Link href="/services" className="text-primary p-2 md:p-0">Projects</Link></li>
+                        <li><Link href="/contact" className="text-primary p-2 md:p-0">Get in Touch</Link></li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </footer>
+    );
+}

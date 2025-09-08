@@ -20,8 +20,8 @@ const NAV_ITEMS = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const logoPath = '/assets/icons/logo.svg';
-  const navLinks = NAV_ITEMS.filter(item => !item.isButton);
-  const contactButton = NAV_ITEMS.find(item => item.isButton);
+  const navLinks = NAV_ITEMS.filter((item) => !item.isButton);
+  const contactButton = NAV_ITEMS.find((item) => item.isButton);
 
   return (
     <header className="flex justify-center p-3 bg-background">
@@ -54,7 +54,7 @@ export default function Header() {
           {contactButton && (
             <Link
               href={contactButton.href}
-              className=" text-primary px-5 py-2 bg-white shadow-lg font-sans rounded-full hover:bg-purple-50 transition-colors"
+              className=" text-t-dark-btn px-5 py-2 bg-white shadow-lg font-sans rounded-full hover:bg-purple-50 transition-colors"
             >
               {contactButton.name}
             </Link>
@@ -67,11 +67,7 @@ export default function Header() {
           onClick={() => setMobileMenuOpen((prev) => !prev)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >
-          {mobileMenuOpen ? (
-            <IoCloseOutline size={24} />
-          ) : (
-            <FiMenu size={24} />
-          )}
+          {mobileMenuOpen ? <IoCloseOutline size={24} /> : <FiMenu size={24} />}
         </button>
       </nav>
 

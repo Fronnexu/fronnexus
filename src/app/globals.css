@@ -41,7 +41,7 @@
     --background: #070707;
     --foreground: #ededed;
     --primary: #ffffff;
-    --primary-70: rgba(0, 0, 0, 0.7);
+    --primary-70: rgba(255, 255, 255, 0.7);
     --secundary: rgba(255, 255, 255, 0.5);
     --t-light-btn: #ffffff;
     --t-dark-btn: #000000;

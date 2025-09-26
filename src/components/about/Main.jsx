@@ -1,7 +1,6 @@
 'use client';
 import { Briefcase, Code2, Github, Instagram, Linkedin } from 'lucide-react';
 
-/** Card genérico com suporte a reversed (alterna a ordem no md+) */
 function ProfileCard({
   image,
   alt,
@@ -17,13 +16,12 @@ function ProfileCard({
   return (
     <article
       className={[
-        'rounded-3xl border border-color-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
+        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
         'overflow-hidden',
         'md:grid md:grid-cols-12 md:items-stretch',
         reversed ? 'md:[&>div:first-child]:order-2' : '',
       ].join(' ')}
     >
-      {/* imagem */}
       <div className="md:col-span-6 h-full flex items-center justify-center">
         <div className="w-full h-full p-[10px]">
           <img
@@ -35,9 +33,8 @@ function ProfileCard({
         </div>
       </div>
 
-      {/* conteúdo */}
-      <div className="md:col-span-6 h-full p-6 md:p-7 bg-gradient-to-b from-color-gradient-border-white to-transparent">
-        <span className="inline-flex items-center px-3 py-1 rounded-md text-sm border border-color-stroke-container-divider bg-color-secundary text-foreground font-medium">
+      <div className="md:col-span-6 h-full p-6 md:p-7 bg-gradient-to-b from-gradient-border-white to-transparent">
+        <span className="inline-flex items-center px-3 py-1 rounded-md text-sm border border-stroke-container-divider bg-secundary text-foreground font-medium">
           <Briefcase size={16} className="mr-1" />
           {role}
         </span>
@@ -60,7 +57,7 @@ function ProfileCard({
               href={github}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
             >
               <Github size={16} /> GitHub
             </a>
@@ -70,7 +67,7 @@ function ProfileCard({
               href={linkedin}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
             >
               <Linkedin size={16} /> LinkedIn
             </a>
@@ -80,7 +77,7 @@ function ProfileCard({
               href={instagram}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+              className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
             >
               <Instagram size={16} /> Instagram
             </a>
@@ -91,18 +88,16 @@ function ProfileCard({
   );
 }
 
-/** Card da agência, reusa o mesmo estilo */
 function AgencyCard({ reversed = false }) {
   return (
     <article
       className={[
-        'rounded-3xl border border-color-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
+        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
         'overflow-hidden',
         'md:grid md:grid-cols-12 md:items-stretch',
         reversed ? 'md:[&>div:first-child]:order-2' : '',
       ].join(' ')}
     >
-      {/* imagem/logotipo */}
       <div className="md:col-span-6 h-full flex items-center justify-center">
         <div className="w-full h-full p-[10px] flex items-center justify-center">
           <img
@@ -114,9 +109,8 @@ function AgencyCard({ reversed = false }) {
         </div>
       </div>
 
-      {/* conteúdo */}
-      <div className="md:col-span-6 h-full p-6 md:p-7 bg-gradient-to-b from-color-gradient-border-white to-transparent">
-        <span className="inline-flex items-center px-3 py-1 rounded-md text-sm border border-color-stroke-container-divider bg-color-secundary text-foreground font-medium">
+      <div className="md:col-span-6 h-full p-6 md:p-7 bg-gradient-to-b from-gradient-border-white to-transparent">
+        <span className="inline-flex items-center px-3 py-1 rounded-md text-sm border border-stroke-container-divider bg-secundary text-foreground font-medium">
           <Briefcase size={16} className="mr-1" />
           AGENCY
         </span>
@@ -141,19 +135,19 @@ function AgencyCard({ reversed = false }) {
         <div className="flex flex-wrap gap-2 mt-4">
           <a
             href="#"
-            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Github size={16} /> GitHub
           </a>
           <a
             href="#"
-            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Linkedin size={16} /> LinkedIn
           </a>
           <a
             href="#"
-            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
+            className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Instagram size={16} /> Instagram
           </a>
@@ -163,7 +157,6 @@ function AgencyCard({ reversed = false }) {
   );
 }
 
-/** Página principal com alternância automática: 0 esq, 1 dir, 2 esq, ... */
 export default function Main() {
   const people = [
     {
@@ -197,8 +190,6 @@ export default function Main() {
       {people.map((p, idx) => (
         <ProfileCard key={idx} {...p} reversed={idx % 2 === 1} />
       ))}
-
-      {/* Agency card entra na sequência, então segue a alternância natural */}
       <AgencyCard reversed={people.length % 2 === 1} />
     </div>
   );

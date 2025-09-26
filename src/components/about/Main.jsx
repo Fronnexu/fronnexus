@@ -16,7 +16,7 @@ function ProfileCard({
   return (
     <article
       className={[
-        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
+        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur m-16',
         'overflow-hidden',
         'md:grid md:grid-cols-12 md:items-stretch',
         reversed ? 'md:[&>div:first-child]:order-2' : '',

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { getProjects } from '@/services/supabase'; // ou caminho relativo ../../services/supabase
 import ProjectCard from '@/components/Projects/ProjectCard';
+import Footer from '@/components/footer/Footer';
 
 export default function ProjetosPage() {
   const [projetos, setProjetos] = useState([]);
@@ -23,10 +24,11 @@ export default function ProjetosPage() {
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-10 space-y-8">
+    <main className=" mx-auto px-4 py-10 space-y-8">
       {projetos.map((p, idx) => (
         <ProjectCard key={p.id} project={p} reversed={idx % 2 === 1} />
       ))}
+      <Footer />
     </main>
   );
 }

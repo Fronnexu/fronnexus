@@ -106,7 +106,7 @@ export default function ProjectCard({ project, reversed = false }) {
               href={deploy}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-xl border border-emerald-300/30 bg-gradient-fill-blue hover:opacity-80 transition text-t-light-btn"
+              className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-xl border  bg-gradient-fill-blue hover:opacity-80 transition text-t-light-btn"
             >
               <span className="i-lucide-globe" /> Website
             </a>

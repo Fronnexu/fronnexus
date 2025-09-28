@@ -1,7 +1,9 @@
 'use client';
-
+{
+  /*   modifique os estilos do apartir da linha 29 */
+}
 import { useEffect, useState } from 'react';
-import { getProjects } from '@/services/supabase'; // ajuste o caminho se precisar
+import { getProjects } from '@/services/supabase';
 
 export default function HomeProjectInfo() {
   const [loading, setLoading] = useState(true);

@@ -5,13 +5,13 @@ import LightRays from './LightRays';
 
 export default function HeroWithLightRays() {
   return (
-    <section className="relative -mt-20 w-full min-h-[600px] isolate overflow-hidden">
+    <section className="relative -mt-20 w-full h-screen min-h-[600px] isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <LightRays
           raysOrigin="top-center"
           raysColor="#AD46FF"
           raysSpeed={1.5}
-          lightSpread={0.8}
+          lightSpread={20}
           rayLength={1.2}
           followMouse={true}
           mouseInfluence={0.1}
@@ -21,8 +21,8 @@ export default function HeroWithLightRays() {
         />
       </div>
 
-      <div className="mx-auto max-w-5xl px-6 py-16 md:py-24  lg:py-28 flex items-center min-h-[600px]">
-        <div className="max-w-3xl">
+      <div className=" mx-auto max-w-5xl px-6 py-auto md:py-24  lg:py-28 flex items-center min-h-[600px]">
+        <div className="max-w-3xl mt-36">
           <h1 className="text-4xl font-extrabold tracking-tight text-primary sm:text-6xl md:text-7xl leading-[1.05]">
             Welcome to your
             <br className="hidden sm:block" />

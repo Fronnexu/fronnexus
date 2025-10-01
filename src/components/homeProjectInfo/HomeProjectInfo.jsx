@@ -20,7 +20,7 @@ export default function HomeProjectInfo() {
   }, []);
 
   return (
-    <div className="mt-10 lg:mt-12">
+    <div className="mt-10 lg:mt-12" id="work">
       {loading ? (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
       ) : (

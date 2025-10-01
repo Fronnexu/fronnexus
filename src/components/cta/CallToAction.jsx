@@ -1,0 +1,50 @@
+'use client';
+
+import React from 'react';
+import LightRays from './LightRays';
+
+export default function HeroWithLightRays() {
+  return (
+    <section className="relative -mt-20 w-full min-h-[600px] isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#AD46FF"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="opacity-70"
+        />
+      </div>
+
+      <div className="mx-auto max-w-5xl px-6 py-16 md:py-24  lg:py-28 flex items-center min-h-[600px]">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-primary sm:text-6xl md:text-7xl leading-[1.05]">
+            Welcome to your
+            <br className="hidden sm:block" />
+            <span className="block ">custom front-end</span>
+            <span className="block">agency.</span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-secondary/90">
+            We transform ideas and designs into fast, responsive, and front-end
+            experiences, fully customized to your needs.
+          </p>
+
+          <div className="mt-8">
+            <a
+              href="#work"
+              className="inline-flex items-center rounded-xl bg-neutral-900 px-5 py-3 text-sm font-semibold text-t-light-btn shadow-lg shadow-black/10 ring-1 ring-black/10 transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-700"
+            >
+              See Our Work
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

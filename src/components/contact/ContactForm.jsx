@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    country: "",
-    language: "",
-    service: "",
-    message: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: '',
+    language: '',
+    service: '',
+    message: '',
     terms: false,
   });
 
@@ -19,7 +19,7 @@ export default function ContactForm() {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
@@ -30,8 +30,6 @@ export default function ContactForm() {
 
   return (
     <div className="relative max-w-5xl mx-auto px-4 py-10">
-      
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Coluna do formulário */}
         <div>
@@ -116,11 +114,11 @@ export default function ContactForm() {
               </legend>
               <div className="grid grid-cols-1 text-primary  sm:grid-cols-2 gap-2">
                 {[
-                  { value: "frontend", label: "Front-End Development" },
-                  { value: "data", label: "Data Analysis" },
-                  { value: "webdesign", label: "Web Design" },
-                  { value: "qa", label: "QA" },
-                  { value: "other", label: "Other" },
+                  { value: 'frontend', label: 'Front-End Development' },
+                  { value: 'data', label: 'Data Analysis' },
+                  { value: 'webdesign', label: 'Web Design' },
+                  { value: 'qa', label: 'QA' },
+                  { value: 'other', label: 'Other' },
                 ].map((service) => (
                   <label
                     key={service.value}
@@ -169,11 +167,11 @@ export default function ContactForm() {
         </div>
 
         <div className="hidden md:flex justify-center md:justify-end">
-          <img
+          {/*  <img
             src="/assets/videos/circle.gif"
             alt="Decorative"
             className="w-64 md:w-80 lg:w-[400px] object-contain"
-          />
+          /> */}
         </div>
       </div>
     </div>

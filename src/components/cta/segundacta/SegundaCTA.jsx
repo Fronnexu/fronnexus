@@ -46,7 +46,7 @@ export default function SegundaCTA() {
 
           <div className="mt-6">
             <a
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 rounded-xl 
              bg-neutral-900/20 backdrop-blur-md 
              px-5 py-3 text-sm font-semibold text-t-light-btn 

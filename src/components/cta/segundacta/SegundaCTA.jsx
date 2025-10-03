@@ -2,7 +2,7 @@ import PixelBlast from './PixelBlast';
 
 export default function SegundaCTA() {
   return (
-    <section className="relative mt-10 w-full h-[450px] flex items-center justify-center overflow-hidden">
+    <section className="relative mt-10 mb-10 w-full h-[450px] flex items-center justify-center overflow-hidden">
       {/* PixelBlast como fundo absoluto */}
       <div className="absolute inset-0 -z-10 ">
         <PixelBlast

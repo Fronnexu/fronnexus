@@ -3,7 +3,7 @@
 import React from 'react';
 import LightRays from './LightRays';
 
-export default function HeroWithLightRays() {
+export default function HeaderBg() {
   return (
     <section className="relative -mt-20 w-full h-screen min-h-[600px] isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -38,7 +38,13 @@ export default function HeroWithLightRays() {
           <div className="mt-8">
             <a
               href="#work"
-              className="inline-flex items-center rounded-xl bg-neutral-900 px-5 py-3 text-sm font-semibold text-t-light-btn shadow-lg shadow-black/10 ring-1 ring-black/10 transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-700"
+              className="inline-flex items-center gap-2 rounded-xl 
+             bg-neutral-900/20 backdrop-blur-md 
+             px-5 py-3 text-sm font-semibold text-t-light-btn 
+             shadow-lg shadow-black/10 ring-1 ring-white/10
+             transition-all duration-300 
+             hover:scale-[1.03] hover:bg-neutral-900/30 hover:ring-white/20
+             focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
             >
               See Our Work
             </a>

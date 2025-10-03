@@ -1,6 +1,3 @@
-/**
- * @author gabrielvettorazzi
- */
 'use client';
 
 import { useState } from 'react';
@@ -19,16 +16,19 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logoPath = '/assets/icons/logo.svg';
-  const navLinks = NAV_ITEMS.filter((item) => !item.isButton);
-  const contactButton = NAV_ITEMS.find((item) => item.isButton);
 
   return (
-    <header className="flex justify-center p-3 bg-background">
-      <nav className="flex items-center justify-between w-full max-w-5xl px-6 pr-2 bg-gradient-radial-white rounded-4xl shadow-lg">
+    <header className="flex justify-center p-3 z-50 relative">
+      <nav
+        className="flex items-center w-full max-w-5xl px-6 pr-2 
+                   rounded-4xl shadow-lg 
+                   bg-white/8 backdrop-blur-md 
+                   border border-white/20"
+      >
+        {/* Logo à esquerda */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src={logoPath}
+            src="/assets/icons/logo.svg"
             alt="FRONNEXUS Logo"
             width={115}
             height={32}
@@ -36,34 +36,33 @@ export default function Header() {
           />
         </Link>
 
-        {/* Itens de navegação para Desktop */}
-        <div className="hidden lg:flex items-center justify-between w-full ml-10 ">
-          <div className="flex items-center gap-8">
-            {navLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="font-sans text-primary  transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          {/*Get in touch à direita */}
-          {contactButton && (
+        {/* Itens + botão à direita */}
+        <div className="hidden lg:flex items-center gap-8 ml-auto">
+          {NAV_ITEMS.filter((item) => !item.isButton).map((item) => (
             <Link
-              href={contactButton.href}
-              className=" text-t-dark-btn px-5 py-2 bg-white shadow-lg font-sans rounded-full hover:bg-purple-50 transition-colors"
+              key={item.href}
+              href={item.href}
+              className="font-sans text-primary transition-colors 
+                         hover:text-purple-400 focus-visible:text-purple-400 focus:outline-none"
             >
-              {contactButton.name}
+              {item.name}
             </Link>
-          )}
+          ))}
+
+          {NAV_ITEMS.filter((item) => item.isButton).map((btn) => (
+            <Link
+              key={btn.href}
+              href={btn.href}
+              className="text-t-dark-btn px-5 py-2 bg-white shadow-lg font-sans rounded-full hover:bg-purple-50 transition-colors"
+            >
+              {btn.name}
+            </Link>
+          ))}
         </div>
 
-        {/* Botão mobile */}
+        {/* Mobile toggle */}
         <button
-          className="p-2 text-primary rounded-full hover:bg-gray-100 lg:hidden"
+          className="p-2 text-primary rounded-full hover:bg-gray-100 lg:hidden ml-auto"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
         >

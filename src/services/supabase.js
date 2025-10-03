@@ -11,6 +11,5 @@ export async function getProjects() {
     console.error('Erro ao buscar projetos:', error.message);
     return [];
   }
-  console.log('Projetos buscados com sucesso:', data);
   return data;
 }

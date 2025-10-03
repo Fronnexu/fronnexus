@@ -29,7 +29,6 @@ function usePrefersDark() {
 }
 
 function iconPath(name, isDark) {
-  console.log(isDark);
   return `/assets/icons/${name}${isDark ? 'Dark' : ''}.svg`;
 }
 

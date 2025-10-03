@@ -2,14 +2,15 @@
 import Footer from '@/components/footer/Footer';
 import HomeProjectInfo from '@/components/homeProjectInfo/HomeProjectInfo';
 import ServicesSection from '@/components/services/ServicesSection';
-import CallToAction from '@/components/cta/CallToAction';
+import HeaderBg from '@/components/cta/HeaderBg';
+import SegundaCTA from '@/components/cta/segundacta/SegundaCTA';
 export default function Home() {
   return (
     <>
-      <CallToAction />
+      <HeaderBg />
       <ServicesSection />
       <HomeProjectInfo />
-
+      <SegundaCTA />
       <Footer />
     </>
   );

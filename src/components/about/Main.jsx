@@ -13,6 +13,7 @@ function ProfileCard({
   instagram,
   reversed = false,
 }) {
+
   return (
     <article
       className={[
@@ -92,18 +93,19 @@ function AgencyCard({ reversed = false }) {
   return (
     <article
       className={[
-        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
+        'rounded-3xl border border-stroke-container-divider shadow-lg bg-background/5 backdrop-blur m-16',
         'overflow-hidden',
         'md:grid md:grid-cols-12 md:items-stretch',
         reversed ? 'md:[&>div:first-child]:order-2' : '',
       ].join(' ')}
     >
+
       <div className="md:col-span-6 h-full flex items-center justify-center">
         <div className="w-full h-full p-[10px] flex items-center justify-center">
           <img
             src="/assets/image/logosymbol_1x1_high_quality.png"
             alt="FromNexus"
-            className="h-[300px] w-auto object-contain rounded-2xl"
+            className="w-full h-[515px] object-cover rounded-2xl"
             loading="lazy"
           />
         </div>
@@ -115,7 +117,7 @@ function AgencyCard({ reversed = false }) {
           AGENCY
         </span>
 
-        <h2 className="mt-2 text-2xl font-bold text-foreground">FROMNEXUS</h2>
+        <h2 className="mt-2 text-2xl font-bold text-foreground">FRONEXUS</h2>
 
         <p className="flex items-center text-primary-70 text-sm mt-1">
           <Code2 size={16} className="mr-1" />
@@ -134,19 +136,19 @@ function AgencyCard({ reversed = false }) {
 
         <div className="flex flex-wrap gap-2 mt-4">
           <a
-            href="#"
+            href="https://github.com/Fronnexu"
             className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Github size={16} /> GitHub
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/fron-nexus-b2ab71379/"
             className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Linkedin size={16} /> LinkedIn
           </a>
           <a
-            href="#"
+            href="https://www.instagram.com/fronnexus/"
             className="flex items-center gap-1 px-3 py-2 rounded-xl border border-stroke-container-divider bg-secundary hover:bg-primary-70/10 transition text-foreground text-sm font-medium"
           >
             <Instagram size={16} /> Instagram

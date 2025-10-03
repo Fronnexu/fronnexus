@@ -8,7 +8,7 @@ import { FiMenu } from 'react-icons/fi';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const NAV_ITEMS = [
-  { name: 'Services', href: '/services' },
+  { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Projects', href: '/projects' },
   { name: 'Get in Touch', href: '/contact', isButton: true },

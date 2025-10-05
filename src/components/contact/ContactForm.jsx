@@ -16,23 +16,38 @@ export default function ContactForm() {
     message: '',
     terms: false,
   });
-  
-const [countries, setCountries] = useState([]);
 
-useEffect(() => {
-  fetch('https://countriesnow.space/api/v0.1/countries')
-    .then((res) => res.json())
-    .then((data) => {
-      const sorted = data.data
-        .map((country) => ({
-          name: country.country,
-          code: country.iso2,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
-      setCountries(sorted);
-    })
-    .catch((err) => console.error('Erro ao buscar países:', err));
-}, []);
+  const [countries, setCountries] = useState([]);
+
+       {/* Aqui está bom já kkk*/}
+  const languages = [
+    "English",
+    "Spanish",
+    "Portuguese",
+    "French",
+    "German",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Chinese",
+    "Arabic",
+    "Russian"
+  ];
+
+  useEffect(() => {
+    fetch('https://countriesnow.space/api/v0.1/countries')
+      .then((res) => res.json())
+      .then((data) => {
+        const sorted = data.data
+          .map((country) => ({
+            name: country.country,
+            code: country.iso2,
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name));
+        setCountries(sorted);
+      })
+      .catch((err) => console.error('Erro ao buscar países:', err));
+  }, []);
 
 
   const handleChange = (e) => {
@@ -99,7 +114,22 @@ useEffect(() => {
             </div>
 
             {/* País */}
-       
+            <div>
+              <select
+                name="country"
+                className="w-full p-3 text-primary-70 border rounded"
+                value={formData.country}
+                onChange={handleChange}
+              >
+                <option value="">Select one country</option>
+                {countries.map((country) => (
+                  <option key={country.code} value={country.name}>
+                    {country.name}
+                  </option>
+                ))}
+              </select>
+
+            </div>
 
             <div>
               <select
@@ -108,10 +138,12 @@ useEffect(() => {
                 value={formData.language}
                 onChange={handleChange}
               >
-                <option value="">Select one Language</option>
-                <option value="english">English</option>
-                <option value="portuguese">Portuguese</option>
-                <option value="spanish">Spanish</option>
+                <option value="">Select a Language</option>
+                {languages.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang}
+                  </option>
+                ))}
               </select>
             </div>
 

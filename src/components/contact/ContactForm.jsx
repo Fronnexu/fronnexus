@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,24 @@ export default function ContactForm() {
     message: '',
     terms: false,
   });
+  
+const [countries, setCountries] = useState([]);
+
+useEffect(() => {
+  fetch('https://countriesnow.space/api/v0.1/countries')
+    .then((res) => res.json())
+    .then((data) => {
+      const sorted = data.data
+        .map((country) => ({
+          name: country.country,
+          code: country.iso2,
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      setCountries(sorted);
+    })
+    .catch((err) => console.error('Erro ao buscar países:', err));
+}, []);
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -79,20 +99,7 @@ export default function ContactForm() {
             </div>
 
             {/* País */}
-            <div>
-              <select
-                name="country"
-                className="w-full p-3 text-primary-70 border rounded"
-                value={formData.country}
-                onChange={handleChange}
-              >
-                <option value="">Select one country</option>
-                <option value="brazil">Brazil</option>
-                <option value="usa">United States</option>
-                <option value="spain">Spain</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+       
 
             <div>
               <select

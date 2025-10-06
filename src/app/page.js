@@ -11,6 +11,11 @@ export default function Home() {
       <HeaderBg />
       <ServicesSection />
       <PrimeiraCTA />
+      <SegundaCTA
+        title="Turn your idea into digital reality"
+        subtitle="From concept to launch, we build web solutions that connect you to your audience."
+        buttonText="want my project online"
+      />
       <HomeProjectInfo />
       <SegundaCTA />
       <Footer />

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ export default function ContactForm() {
             We work globally, powered by creativity and technology.
           </p>
 
-          <form onSubmit={handleSubmit} className=" text-primary space-y-6">
+          <form onSubmit={handleSubmit} className="text-primary space-y-6">
             <div className="grid grid-cols-1 text-primary-70 md:grid-cols-2 gap-4">
               <input
                 type="text"
@@ -59,6 +60,7 @@ export default function ContactForm() {
                 onChange={handleChange}
               />
             </div>
+
             <div className="grid grid-cols-1 text-primary-70 md:grid-cols-2 gap-4">
               <input
                 type="email"
@@ -94,6 +96,7 @@ export default function ContactForm() {
               </select>
             </div>
 
+            {/* Idioma */}
             <div>
               <select
                 name="language"
@@ -108,11 +111,12 @@ export default function ContactForm() {
               </select>
             </div>
 
+            {/* Serviços */}
             <fieldset className="space-y-2">
               <legend className="text-primary-70 mb-2">
                 Service you’re interested in
               </legend>
-              <div className="grid grid-cols-1 text-primary  sm:grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 text-primary sm:grid-cols-2 gap-2">
                 {[
                   { value: 'frontend', label: 'Front-End Development' },
                   { value: 'data', label: 'Data Analysis' },
@@ -122,7 +126,7 @@ export default function ContactForm() {
                 ].map((service) => (
                   <label
                     key={service.value}
-                    className="flex items-center  space-x-2 text-primary-70"
+                    className="flex items-center space-x-2 text-primary-70"
                   >
                     <input
                       type="radio"
@@ -146,6 +150,8 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
             />
+
+            {/* Termos */}
             <label className="flex items-center space-x-2 text-primary-70">
               <input
                 type="checkbox"
@@ -153,13 +159,22 @@ export default function ContactForm() {
                 checked={formData.terms}
                 onChange={handleChange}
               />
-              <span>I accept the Terms</span>
+              <span>
+                I accept the{' '}
+                <Link
+                  href="/terms/responsability"
+                  target="_blank"
+                  className="text-purple-500 hover:underline hover:text-purple-400 transition"
+                >
+                  Terms of Responsibility
+                </Link>
+              </span>
             </label>
 
             {/* Botão */}
             <button
               type="submit"
-              className="w-full p-3 bg-background shadow-2xl text-primary transition"
+              className="w-full p-3 bg-background shadow-2xl text-primary transition hover:bg-purple-100"
             >
               Send Message
             </button>
@@ -167,11 +182,13 @@ export default function ContactForm() {
         </div>
 
         <div className="hidden md:flex justify-center md:justify-end">
-          {/*  <img
+          {/* 
+          <img
             src="/assets/videos/circle.gif"
             alt="Decorative"
             className="w-64 md:w-80 lg:w-[400px] object-contain"
-          /> */}
+          /> 
+          */}
         </div>
       </div>
     </div>

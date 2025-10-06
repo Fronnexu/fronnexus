@@ -38,22 +38,25 @@ export default function Footer() {
   return (
     <footer className="p-6 w-full bg-background">
       <div className="flex justify-between items-center w-full md:w-auto md:order-1">
+        {/* Logo */}
         <Image
           src="/assets/icons/logo.svg"
           alt="Logo da empresa"
           width={150}
           height={150}
-          className="mb-4 md:mb-0"
+          className="mb-4 md:mb-0 h-auto w-auto"
           priority
         />
 
-        <div className="flex gap-2.5">
+        {/* Social icons */}
+        <div className="flex gap-3">
           <Link href="#" target="_blank" aria-label="Instagram">
             <Image
               src={iconPath('instagram', isDark)}
               alt="Instagram"
               width={24}
               height={24}
+              className="size-6 hover:opacity-80 transition-opacity"
             />
           </Link>
 
@@ -63,6 +66,7 @@ export default function Footer() {
               alt="WhatsApp"
               width={24}
               height={24}
+              className="size-6 hover:opacity-80 transition-opacity"
             />
           </Link>
 
@@ -72,6 +76,7 @@ export default function Footer() {
               alt="LinkedIn"
               width={24}
               height={24}
+              className="size-6 hover:opacity-80 transition-opacity"
             />
           </Link>
 
@@ -81,6 +86,7 @@ export default function Footer() {
               alt="Facebook"
               width={24}
               height={24}
+              className="size-6 hover:opacity-80 transition-opacity"
             />
           </Link>
 
@@ -90,40 +96,57 @@ export default function Footer() {
               alt="GitHub"
               width={24}
               height={24}
+              className="size-6 hover:opacity-80 transition-opacity"
             />
           </Link>
         </div>
       </div>
 
+      {/* Navegação e créditos */}
       <div className="flex flex-col md:justify-between md:flex-row md:items-center md:gap-6 mt-6 md:mt-0 md:order-2">
         <div className="mt-6 md:mt-0 text-sm text-primary md:ml-6 order-2 md:order-1">
-          © {new Date().getFullYear()} Fronnexus. All rights reserved.
+          © {new Date().getFullYear()} FromNexus. All rights reserved.
         </div>
 
         <nav className="order-1 md:order-2">
           <ul className="space-y-2 ml-4 gap-2.5 md:flex md:space-y-0 md:space-x-6">
             <li>
-              <Link href="/" className="text-primary p-2 md:p-0">
+              <Link
+                href="/"
+                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/services" className="text-primary p-2 md:p-0">
+              <Link
+                href="/services"
+                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
+              >
                 Services
               </Link>
             </li>
             <li>
-              <Link href="/about" className="text-primary p-2 md:p-0">
+              <Link
+                href="/about"
+                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/projects" className="text-primary p-2 md:p-0">
+              <Link
+                href="/projects"
+                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
+              >
                 Projects
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="text-primary p-2 md:p-0">
+              <Link
+                href="/contact"
+                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
+              >
                 Get in Touch
               </Link>
             </li>

@@ -153,6 +153,7 @@ export default function ContactForm() {
               </div>
             </div>
 
+
             <div className="grid grid-cols-1 text-primary-70 md:grid-cols-2 gap-4">
               <div>
                 <input
@@ -212,6 +213,7 @@ export default function ContactForm() {
               {errors.language && <p className="text-red-500 text-sm mt-1">{errors.language}</p>}
             </div>
 
+            {/* Serviços */}
             <fieldset className="space-y-2">
               <legend className="text-primary-70 mb-2">Service you’re interested in</legend>
               <div className="grid grid-cols-1 text-primary sm:grid-cols-2 gap-2">

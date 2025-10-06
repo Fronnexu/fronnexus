@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Link from 'next/link';
 
 export default function ContactForm() {
 
@@ -195,6 +197,8 @@ export default function ContactForm() {
               </select>
               {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
             </div>
+
+            {/* Idioma */}
             <div>
               <select
                 name="language"
@@ -212,8 +216,12 @@ export default function ContactForm() {
               {errors.language && <p className="text-red-500 text-sm mt-1">{errors.language}</p>}
             </div>
 
+            {/* Serviços */}
             <fieldset className="space-y-2">
               <legend className="text-primary-70 mb-2">Service you’re interested in</legend>
+              <legend className="text-primary-70 mb-2">
+                Service you’re interested in
+              </legend>
               <div className="grid grid-cols-1 text-primary sm:grid-cols-2 gap-2">
                 {[
                   { value: 'frontend', label: 'Front-End Development' },
@@ -224,6 +232,17 @@ export default function ContactForm() {
                 ].map((service) => (
                   <label key={service.value} className="flex items-center space-x-2 text-primary-70">
                     <input type="radio" name="service" value={service.value} checked={formData.service === service.value} onChange={handleChange} />
+                  <label
+                    key={service.value}
+                    className="flex items-center space-x-2 text-primary-70"
+                  >
+                    <input
+                      type="radio"
+                      name="service"
+                      value={service.value}
+                      checked={formData.service === service.value}
+                      onChange={handleChange}
+                    />
                     <span>{service.label}</span>
                   </label>
                 ))}
@@ -261,17 +280,54 @@ export default function ContactForm() {
                 An error occurred while sending the message. Please try again.
               </div>
             )}
+            {/* Mensagem */}
+            <textarea
+              name="message"
+              placeholder="Your Message..."
+              className="w-full text-primary-70 p-3 border rounded"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+            />
+
+            {/* Termos */}
+            <label className="flex items-center space-x-2 text-primary-70">
+              <input
+                type="checkbox"
+                name="terms"
+                checked={formData.terms}
+                onChange={handleChange}
+              />
+              <span>
+                I accept the{' '}
+                <Link
+                  href="/terms/responsability"
+                  target="_blank"
+                  className="text-purple-500 hover:underline hover:text-purple-400 transition"
+                >
+                  Terms of Responsibility
+                </Link>
+              </span>
+            </label>
 
             <button
               type="submit"
               disabled={isSending}
               className="w-full p-3 bg-background shadow-2xl text-primary transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full p-3 bg-background shadow-2xl text-primary transition hover:bg-purple-100"
             >
               {isSending ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
         <div className="hidden md:flex justify-center md:justify-end">
+          {/* 
+          <img
+            src="/assets/videos/circle.gif"
+            alt="Decorative"
+            className="w-64 md:w-80 lg:w-[400px] object-contain"
+          /> 
+          */}
         </div>
       </div>
     </div>

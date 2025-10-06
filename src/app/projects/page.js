@@ -130,44 +130,20 @@ export default function ProjetosPage() {
   return (
     <main className=" px-4 py-10 space-y-10">
       {/* Cabeçalho fixo alimentado pelos dados */}
-      <header className="space-y-4">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground">
-            {headerData.title}
-          </h1>
-          <p className="text-primary-70">{headerData.subtitle}</p>
-        </div>
-
-        {/* Nomes dos projetos */}
-        {headerData.names.length > 0 && (
-          <div className="text-sm text-primary-70/90">
-            <span className="i-lucide-layout-grid inline-block mr-2" />
-            <span className="font-medium">Projetos:</span>{' '}
-            {headerData.names.join(' · ')}
-          </div>
-        )}
-
-        {/* Tech stack agregada */}
-        <div>
-          <div className="mt-1 text-sm text-primary-70 flex items-center gap-2">
-            <span className="i-lucide-sparkles" />
-            <span>Tech Stack ({headerData.totalTechs})</span>
-          </div>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {headerData.techs.length > 0 ? (
-              headerData.techs.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs px-2.5 py-1 rounded-full border border-color-stroke-container-divider bg-color-secundary text-foreground"
-                >
-                  {t.toLowerCase()}
-                </span>
-              ))
-            ) : (
-              <span className="text-xs px-2.5 py-1 rounded-full border border-color-stroke-container-divider bg-color-secundary text-foreground">
-                n/a
-              </span>
-            )}
+      <header className="bg-background px-6 md:px-60 py-16">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+          {/* Texto */}
+          <div className="text-center  max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
+              Built with Code. Driven by Design.
+            </h2>
+            <p className="text-base text-primary-70 leading-relaxed mb-6">
+              Explore how we turn ideas into functional, fast, and beautiful
+              digital experiences.
+            </p>
+            <button className="bg-gray-100 text-t-dark-btn text-sm font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+              See Our Work
+            </button>
           </div>
         </div>
       </header>

@@ -1,8 +1,8 @@
+// app/layout.js
 import Header from '@/components/Header/Header';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
-// Carrega a Inter via Next.js otimizada
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',

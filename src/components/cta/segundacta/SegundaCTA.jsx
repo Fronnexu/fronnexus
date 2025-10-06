@@ -1,20 +1,7 @@
+'use client';
 // components/CTASection.jsx
 import PixelBlast from './PixelBlast';
 
-/**
- * CTASection — componente reutilizável de Call To Action
- *
- * Props:
- * - title: string | string[] (pode passar string com \n para quebrar em 2 linhas)
- * - subtitle?: string
- * - buttonText?: string
- * - buttonHref?: string
- * - actions?: ReactNode  (substitui o botão padrão)
- * - height?: string      (ex: "h-[450px]")
- * - className?: string
- * - glow?: boolean       (liga/desliga o glow ao fundo do texto)
- * - pixel?: { ... }      (config avançada para o PixelBlast)
- */
 export default function CTASection({
   title = 'Let’s Create Something\nAmazing Together!',
   subtitle = 'Reach out today!',
@@ -51,7 +38,7 @@ export default function CTASection({
       className={`relative mt-10 mb-10 w-full ${height} flex items-center justify-center overflow-hidden ${className}`}
     >
       {/* PixelBlast como fundo absoluto */}
-      <div className="absolute inset-0 -z-10">
+      <div className="hidden md:block absolute inset-0 -z-10">
         <PixelBlast
           variant={pixel.variant}
           pixelSize={pixel.pixelSize}

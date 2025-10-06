@@ -1,23 +1,43 @@
-'use client';
+// app/page.js
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import Footer from '@/components/footer/Footer';
-import HomeProjectInfo from '@/components/homeProjectInfo/HomeProjectInfo';
-import ServicesSection from '@/components/services/ServicesSection';
-import PrimeiraCTA from '@/components/cta/PrimeiraCTA/PrimeiraCTA';
-import HeaderBg from '@/components/Header/HeaderBg';
-import SegundaCTA from '@/components/cta/SegundaCTA/SegundaCTA';
+import ClientHomeProjectInfo from '@/components/client/ClientHomeProjectInfo';
+import ClientSegundaCTA from '@/components/client/ClientSegundaCTA';
+
+const HeaderBg = dynamic(() => import('@/components/Header/HeaderBg'), {
+  loading: () => null,
+});
+const ServicesSection = dynamic(
+  () => import('@/components/services/ServicesSection'),
+  { loading: () => null },
+);
+
 export default function Home() {
   return (
     <>
-      <HeaderBg />
-      <ServicesSection />
-      <PrimeiraCTA />
-      <SegundaCTA
-        title="Turn your idea into digital reality"
-        subtitle="From concept to launch, we build web solutions that connect you to your audience."
-        buttonText="want my project online"
-      />
-      <HomeProjectInfo />
-      <SegundaCTA />
+      <Suspense fallback={null}>
+        <HeaderBg />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <ServicesSection />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <ClientSegundaCTA
+          title="Turn your idea into digital reality"
+          subtitle="From concept to launch, we build web solutions that connect you to your audience."
+          buttonText="want my project online"
+        />
+      </Suspense>
+
+      <ClientHomeProjectInfo />
+
+      <Suspense fallback={null}>
+        <ClientSegundaCTA />
+      </Suspense>
+
       <Footer />
     </>
   );

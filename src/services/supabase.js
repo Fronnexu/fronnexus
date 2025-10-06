@@ -13,3 +13,11 @@ export async function getProjects() {
   }
   return data;
 }
+export async function getWorkers() {
+  const { data, error } = await supabase.from('workers').select('*');
+  if (error) {
+    console.error('Erro ao buscar projetos:', error.message);
+    return [];
+  }
+  return data;
+}

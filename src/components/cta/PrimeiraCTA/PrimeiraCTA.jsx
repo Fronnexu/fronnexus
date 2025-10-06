@@ -1,3 +1,4 @@
+"use client';";
 import CardSwap, { Card } from './CardSwap';
 
 export default function PrimeiraCTA() {

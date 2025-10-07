@@ -17,7 +17,14 @@ export default function Home() {
   return (
     <>
       <Suspense fallback={null}>
-        <HeaderBg />
+        <HeaderBg
+          title="Empowering your"
+          highlight="digital presence"
+          subtitle="with precision."
+          description="We craft seamless web experiences that merge creativity, technology, and strategy."
+          buttonText="Meet Our Team"
+          buttonLink="/about"
+        />
       </Suspense>
 
       <Suspense fallback={null}>

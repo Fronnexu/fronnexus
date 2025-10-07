@@ -44,7 +44,7 @@ export default function Main() {
             'flex flex-col md:flex-row items-center gap-8',
             idx % 2 === 1 ? 'md:flex-row-reverse' : '',
             'border border-white/10 rounded-3xl shadow-lg p-6 md:p-10 mx-4 md:mx-16',
-            'bg-white/5 md:backdrop-blur-md',
+            ' md:backdrop-blur-md',
             'content-visibility-auto contain-intrinsic-size-[600px]',
           ].join(' ')}
         >

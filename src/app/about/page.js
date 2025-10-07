@@ -1,16 +1,21 @@
 // app/about/page.js
 import { Suspense } from 'react';
-import Hero from '@/components/about/Hero';
 import LazyMount from '@/components/utils/LazyMount';
 import Main from '@/components/about/Main';
 import Skills from '@/components/about/Skills';
 import Footer from '@/components/footer/Footer';
+import HeaderBg from '@/components/Header/HeaderBg';
 
 export default function Home() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white dark:bg-background text-primary dark:text-primary">
       <Suspense fallback={null}>
-        <Hero />
+        <HeaderBg
+          title="Who We Are"
+          description="A digital agency built on passion, precision, and purpose. We blend design, technology, and strategy to create seamless digital experiences for businesses worldwide."
+          buttonText="See our Work"
+          buttonLink="/projects"
+        />
       </Suspense>
 
       <LazyMount>

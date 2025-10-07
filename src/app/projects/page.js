@@ -5,7 +5,8 @@ import { getProjects } from '@/services/supabase';
 import ProjectCard from '@/components/Projects/ProjectCard';
 import SegundaCTA from '@/components/cta/SegundaCTA/SegundaCTA';
 import Footer from '@/components/footer/Footer';
-
+import HeaderBg from '@/components/Header/HeaderBg';
+import { heroProjectInfo } from '@/components/utils/heroInfo';
 function toArrayMaybe(v) {
   if (Array.isArray(v)) return v;
   if (typeof v === 'string') {
@@ -96,25 +97,6 @@ export default function ProjetosPage() {
   }, []);
 
   // >>> FIXO DA PÁGINA USANDO DADOS DOS CARDS <<<
-  const headerData = useMemo(() => {
-    const total = projetos.length;
-    const names = projetos.map((p) => p.nome).filter(Boolean);
-    const techSet = new Set();
-    projetos.forEach((p) =>
-      (p.tecnologias || []).forEach((t) => techSet.add(String(t))),
-    );
-    const techs = Array.from(techSet).sort((a, b) => a.localeCompare(b));
-    return {
-      title: 'Projetos',
-      subtitle:
-        total > 0
-          ? `Exibindo ${total} projeto${total > 1 ? 's' : ''}.`
-          : 'Nenhum projeto encontrado.',
-      names,
-      techs,
-      totalTechs: techs.length,
-    };
-  }, [projetos]);
 
   if (loading) {
     return (
@@ -126,28 +108,20 @@ export default function ProjetosPage() {
       </main>
     );
   }
+  const { title, description, btn } = heroProjectInfo[0] || {};
 
   return (
     <main className=" px-4 py-10 space-y-10">
       {/* Cabeçalho fixo alimentado pelos dados */}
-      <header className="bg-background px-6 md:px-60 py-16">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-10">
-          {/* Texto */}
-          <div className="text-center  max-w-xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
-              Built with Code. Driven by Design.
-            </h2>
-            <p className="text-base text-primary-70 leading-relaxed mb-6">
-              Explore how we turn ideas into functional, fast, and beautiful
-              digital experiences.
-            </p>
-            <button className="bg-gray-100 text-t-dark-btn text-sm font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
-              See Our Work
-            </button>
-          </div>
-        </div>
-      </header>
 
+      <HeaderBg
+        title="Built with Code."
+        highlight="Driven by"
+        subtitle="Design."
+        description="Explore how we turn ideas into functional, fast, and beautiful digital experiences."
+        buttonText="See our Work"
+        buttonLink="/about"
+      />
       {/* Lista de cards */}
       <section className="space-y-8">
         {projetos.map((p, idx) => (

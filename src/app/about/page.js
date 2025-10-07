@@ -8,7 +8,7 @@ import Footer from '@/components/footer/Footer';
 
 export default function Home() {
   return (
-    <>
+    <section className="bg-white dark:bg-gray-900">
       <Suspense fallback={null}>
         <Hero />
       </Suspense>
@@ -20,6 +20,6 @@ export default function Home() {
         <Main />
       </LazyMount>
       <Footer />
-    </>
+    </section>
   );
 }

@@ -128,9 +128,8 @@ export default function ContactForm() {
                     type="text"
                     name="firstName"
                     placeholder="First Name"
-                    className={`w-full p-3 text-primary-70 border rounded ${
-                      errors.firstName ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full p-3 text-primary-70 border rounded ${errors.firstName ? 'border-red-500' : ''
+                      }`}
                     value={formData.firstName}
                     onChange={handleChange}
                   />
@@ -145,9 +144,8 @@ export default function ContactForm() {
                     type="text"
                     name="lastName"
                     placeholder="Last Name"
-                    className={`w-full text-primary-70 p-3 border rounded ${
-                      errors.lastName ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full text-primary-70 p-3 border rounded ${errors.lastName ? 'border-red-500' : ''
+                      }`}
                     value={formData.lastName}
                     onChange={handleChange}
                   />
@@ -166,9 +164,8 @@ export default function ContactForm() {
                     type="email"
                     name="email"
                     placeholder="E-mail"
-                    className={`w-full p-3 border rounded ${
-                      errors.email ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full p-3 border rounded ${errors.email ? 'border-red-500' : ''
+                      }`}
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -182,9 +179,8 @@ export default function ContactForm() {
                     type="tel"
                     name="phone"
                     placeholder="Phone"
-                    className={`w-full p-3 border rounded ${
-                      errors.phone ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full p-3 border rounded ${errors.phone ? 'border-red-500' : ''
+                      }`}
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -194,13 +190,13 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              {/* País e idioma */}
+              {/* Paíss e idioma */}
               <div>
                 <select
                   name="country"
-                  className={`w-full p-3 text-primary-70 border rounded ${
-                    errors.country ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full p-3 border rounded bg-background text-primary ${ 
+                    errors.country ? 'border-red-500' : 'text-primary-70'
+                    }`}
                   value={formData.country}
                   onChange={handleChange}
                 >
@@ -219,9 +215,9 @@ export default function ContactForm() {
               <div>
                 <select
                   name="language"
-                  className={`w-full p-3 text-primary-70 border rounded ${
-                    errors.language ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full p-3 border rounded bg-background text-primary ${ 
+                    errors.language ? 'border-red-500' : 'text-primary-70' 
+                    }`}
                   value={formData.language}
                   onChange={handleChange}
                 >
@@ -236,7 +232,6 @@ export default function ContactForm() {
                   <p className="text-red-500 text-sm mt-1">{errors.language}</p>
                 )}
               </div>
-
               {/* Serviços - agora multi-seleção */}
               <fieldset className="space-y-2">
                 <legend className="text-primary-70 mb-2">
@@ -275,9 +270,8 @@ export default function ContactForm() {
                 <textarea
                   name="message"
                   placeholder="Your Message..."
-                  className={`w-full text-primary-70 p-3 border rounded ${
-                    errors.message ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full text-primary-70 p-3 border rounded ${errors.message ? 'border-red-500' : ''
+                    }`}
                   rows="4"
                   value={formData.message}
                   onChange={handleChange}

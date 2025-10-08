@@ -1,0 +1,327 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { validateContactForm } from '@/lib/validateContact';
+
+export default function ContactForm() {
+  const [isSending, setIsSending] = useState(false);
+  const [sendResult, setSendResult] = useState(null);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    country: '',
+    language: '',
+    service: [], // agora é array
+    message: '',
+    terms: false,
+  });
+
+  const [errors, setErrors] = useState({});
+  const [countries, setCountries] = useState([]);
+  const languages = ['English', 'Spanish', 'Portuguese'];
+
+  useEffect(() => {
+    fetch('https://countriesnow.space/api/v0.1/countries')
+      .then((res) => res.json())
+      .then((data) => {
+        const sorted = data.data
+          .map((country) => ({
+            name: country.country,
+            code: country.iso2,
+          }))
+          .sort((a, b) => a.name.localeCompare(b.name));
+        setCountries(sorted);
+      })
+      .catch((err) => console.error('Erro ao buscar países:', err));
+  }, []);
+
+  // Atualiza o estado e valida campo por campo
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (name === 'service') {
+      // se já existir o valor, remove; se não, adiciona
+      const updatedServices = checked
+        ? [...formData.service, value]
+        : formData.service.filter((s) => s !== value);
+
+      const next = { ...formData, service: updatedServices };
+      setFormData(next);
+      const fieldErrors = validateContactForm(next);
+      setErrors((prev) => ({ ...prev, service: fieldErrors.service }));
+    } else {
+      const next = {
+        ...formData,
+        [name]: type === 'checkbox' ? checked : value,
+      };
+      setFormData(next);
+      const fieldErrors = validateContactForm(next);
+      setErrors((prev) => ({ ...prev, [name]: fieldErrors[name] }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateContactForm(formData);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) return;
+
+    setIsSending(true);
+    setSendResult(null);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSendResult('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          country: '',
+          language: '',
+          service: [],
+          message: '',
+          terms: false,
+        });
+        setErrors({});
+      } else {
+        throw new Error('Falha na resposta do servidor');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar o formulário:', error);
+      setSendResult('error');
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen border-amber-950 mt-10  px-4 py-10 flex flex-col items-center bg-background">
+      <div className="w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="text-2xl md:text-3xl text-primary font-bold mb-2">
+              Have a project in mind? Let’s Talk!
+            </h1>
+            <p className="text-primary mb-6">
+              We work globally, powered by creativity and technology.
+            </p>
+
+            <form
+              onSubmit={handleSubmit}
+              className="text-primary justify-center border-amber-400 space-y-6"
+            >
+              {/* Nomes */}
+              <div className="grid grid-cols-1 text-primary-70 md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    className={`w-full p-3 text-primary-70 border rounded ${errors.firstName ? 'border-red-500' : ''
+                      }`}
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.firstName}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    className={`w-full text-primary-70 p-3 border rounded ${errors.lastName ? 'border-red-500' : ''
+                      }`}
+                    value={formData.lastName}
+                    onChange={handleChange}
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.lastName}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Email e telefone */}
+              <div className="grid grid-cols-1 text-primary-70 md:grid-cols-2 gap-4">
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
+                    className={`w-full p-3 border rounded ${errors.email ? 'border-red-500' : ''
+                      }`}
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone"
+                    className={`w-full p-3 border rounded ${errors.phone ? 'border-red-500' : ''
+                      }`}
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Paíss e idioma */}
+              <div>
+                <select
+                  name="country"
+                  className={`w-full p-3 border rounded bg-background text-primary ${ 
+                    errors.country ? 'border-red-500' : 'text-primary-70'
+                    }`}
+                  value={formData.country}
+                  onChange={handleChange}
+                >
+                  <option value="">Select one country</option>
+                  {countries.map((country) => (
+                    <option key={country.code} value={country.name}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.country && (
+                  <p className="text-red-500 text-sm mt-1">{errors.country}</p>
+                )}
+              </div>
+
+              <div>
+                <select
+                  name="language"
+                  className={`w-full p-3 border rounded bg-background text-primary ${ 
+                    errors.language ? 'border-red-500' : 'text-primary-70' 
+                    }`}
+                  value={formData.language}
+                  onChange={handleChange}
+                >
+                  <option value="">Select a Language</option>
+                  {languages.map((lang) => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+                {errors.language && (
+                  <p className="text-red-500 text-sm mt-1">{errors.language}</p>
+                )}
+              </div>
+              {/* Serviços - agora multi-seleção */}
+              <fieldset className="space-y-2">
+                <legend className="text-primary-70 mb-2">
+                  Services you’re interested in
+                </legend>
+                <div className="grid grid-cols-1 text-primary sm:grid-cols-2 gap-2">
+                  {[
+                    { value: 'frontend', label: 'Front-End Development' },
+                    { value: 'data', label: 'Data Analysis' },
+                    { value: 'webdesign', label: 'Web Design' },
+                    { value: 'qa', label: 'QA' },
+                    { value: 'other', label: 'Other' },
+                  ].map((service) => (
+                    <label
+                      key={service.value}
+                      className="flex items-center space-x-2 text-primary-70"
+                    >
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value={service.value}
+                        checked={formData.service.includes(service.value)}
+                        onChange={handleChange}
+                      />
+                      <span>{service.label}</span>
+                    </label>
+                  ))}
+                </div>
+                {errors.service && (
+                  <p className="text-red-500 text-sm mt-1">{errors.service}</p>
+                )}
+              </fieldset>
+
+              {/* Mensagem */}
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Your Message..."
+                  className={`w-full text-primary-70 p-3 border rounded ${errors.message ? 'border-red-500' : ''
+                    }`}
+                  rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
+                />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
+              </div>
+
+              {/* Termos */}
+              <div>
+                <label className="flex items-center space-x-2 text-primary-70">
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    checked={formData.terms}
+                    onChange={handleChange}
+                  />
+                  <span>I accept the Terms</span>
+                </label>
+                {errors.terms && (
+                  <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
+                )}
+              </div>
+
+              {/* Mensagens de envio */}
+              {sendResult === 'success' && (
+                <div className="p-3 text-green-800 bg-green-100 border border-green-400 rounded">
+                  Message sent successfully! Thank you for your contact.
+                </div>
+              )}
+              {sendResult === 'error' && (
+                <div className="p-3 text-red-800 bg-red-100 border border-red-400 rounded">
+                  An error occurred while sending the message. Please try again.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSending}
+                className="w-full p-3 bg-background shadow-2xl text-primary transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSending ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+
+          <div className="hidden md:flex justify-center md:justify-end"></div>
+        </div>
+      </div>
+    </div>
+  );
+}

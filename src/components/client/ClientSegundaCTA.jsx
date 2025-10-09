@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const SegundaCTA = dynamic(
-  () => import('../cta/SegundaCTA/SegundaCTA').then((m) => m.default),
+  () => import('../cta/segundacta/SegundaCTA').then((m) => m.default),
   { ssr: false, loading: () => null },
 );
 

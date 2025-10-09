@@ -105,7 +105,7 @@ export default function Footer() {
       {/* Navegação e créditos */}
       <div className="flex flex-col md:justify-between md:flex-row md:items-center md:gap-6 mt-6 md:mt-0 md:order-2">
         <div className="mt-6 md:mt-0 text-sm text-primary md:ml-6 order-2 md:order-1">
-          © {new Date().getFullYear()} FromNexus. All rights reserved.
+          © {new Date().getFullYear()} Fronnexus. All rights reserved.
         </div>
 
         <nav className="order-1 md:order-2">
@@ -116,14 +116,6 @@ export default function Footer() {
                 className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
               >
                 Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
-              >
-                Services
               </Link>
             </li>
             <li>

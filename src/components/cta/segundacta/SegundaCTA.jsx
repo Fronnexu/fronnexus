@@ -1,6 +1,6 @@
 'use client';
 // components/CTASection.jsx
-import PixelBlast from '../PixelBlast';
+import PixelBlast from './PixelBlast';
 
 export default function CTASection({
   title = 'Let’s Create Something\nAmazing Together!',

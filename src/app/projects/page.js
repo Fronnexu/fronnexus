@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { getProjects } from '../../services/supabase';
-import ProjectCard from '../../components/Projects/ProjectCard';
-import SegundaCTA from '../../components/cta/SegundaCTA/SegundaCTA';
+import ProjectCard from '../../components/projects/ProjectCard';
+import SegundaCTA from '../../components/cta/segundacta/SegundaCTA';
 import HeaderBg from '../../components/Header/HeaderBg';
 import { heroProjectInfo } from '../../components/utils/heroInfo';
 function toArrayMaybe(v) {

@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const HomeProjectInfo = dynamic(
-  () => import('@/components/homeProjectInfo/HomeProjectInfo'),
+  () => import('../../components/homeProjectInfo/HomeProjectInfo'),
   {
     ssr: false,
     loading: () => (

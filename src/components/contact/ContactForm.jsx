@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { validateContactForm } from '@/lib/validateContact';
+import { validateContactForm } from '../../lib/validateContact';
 
 export default function ContactForm() {
   const [isSending, setIsSending] = useState(false);

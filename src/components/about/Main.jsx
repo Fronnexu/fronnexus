@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { getWorkers } from '@/services/supabase';
+import { getWorkers } from '../../services/supabase';
 
 export default function Main() {
   const [people, setPeople] = useState([]);

@@ -1,5 +1,6 @@
 // app/layout.js
-import Header from '@/components/Header/Header';
+import Header from '../components/Header/Header';
+import Footer from '../components/footer/Footer';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className="antialiased">
         <Header />
         <main className="flex-grow">{children}</main>
+        <Footer />
       </body>
     </html>
   );

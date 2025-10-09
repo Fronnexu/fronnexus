@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { getProjects } from '@/services/supabase';
-import Popup from '@/components/Popup/Popup.jsx';
+import { getProjects } from '../../services/supabase';
+import Popup from '../../components/Popup/Popup.jsx';
 import { Plasma } from '../Animation/Plasma.jsx';
 
 function asArray(technologies) {

@@ -1,15 +1,14 @@
 // app/page.js
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import Footer from '@/components/footer/Footer';
-import ClientHomeProjectInfo from '@/components/client/ClientHomeProjectInfo';
-import ClientSegundaCTA from '@/components/client/ClientSegundaCTA';
+import ClientHomeProjectInfo from '../components/client/ClientHomeProjectInfo';
+import ClientSegundaCTA from '../components/client/ClientSegundaCTA';
 
-const HeaderBg = dynamic(() => import('@/components/Header/HeaderBg'), {
+const HeaderBg = dynamic(() => import('../components/Header/HeaderBg'), {
   loading: () => null,
 });
 const ServicesSection = dynamic(
-  () => import('@/components/services/ServicesSection'),
+  () => import('../components/services/ServicesSection'),
   { loading: () => null },
 );
 
@@ -44,8 +43,6 @@ export default function Home() {
       <Suspense fallback={null}>
         <ClientSegundaCTA />
       </Suspense>
-
-      <Footer />
     </>
   );
 }

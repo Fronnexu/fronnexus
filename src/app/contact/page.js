@@ -1,10 +1,8 @@
-import ContactForm from '@/components/contact/ContactForm';
-import Footer from '@/components/footer/Footer';
+import ContactForm from '../../components/contact/ContactForm';
 export default function Home() {
   return (
     <>
       <ContactForm />
-      <Footer />
     </>
   );
 }

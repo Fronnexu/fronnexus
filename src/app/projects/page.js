@@ -1,12 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { getProjects } from '@/services/supabase';
-import ProjectCard from '@/components/Projects/ProjectCard';
-import SegundaCTA from '@/components/cta/SegundaCTA/SegundaCTA';
-import Footer from '@/components/footer/Footer';
-import HeaderBg from '@/components/Header/HeaderBg';
-import { heroProjectInfo } from '@/components/utils/heroInfo';
+import { getProjects } from '../../services/supabase';
+import ProjectCard from '../../components/Projects/ProjectCard';
+import SegundaCTA from '../../components/cta/SegundaCTA/SegundaCTA';
+import HeaderBg from '../../components/Header/HeaderBg';
+import { heroProjectInfo } from '../../components/utils/heroInfo';
 function toArrayMaybe(v) {
   if (Array.isArray(v)) return v;
   if (typeof v === 'string') {
@@ -142,8 +141,6 @@ export default function ProjetosPage() {
         subtitle="Strategic design combined with performance to win clients."
         buttonText="Talk to a specialist"
       />
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }

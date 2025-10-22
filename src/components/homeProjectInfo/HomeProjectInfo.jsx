@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { getProjects } from '../../services/supabase';
 import Popup from '../../components/Popup/Popup.jsx';
-import { Plasma } from '../Animation/Plasma.jsx';
+
 
 function asArray(technologies) {
   if (Array.isArray(technologies)) return technologies;
@@ -67,16 +67,6 @@ export default function HomeProjectInfo() {
         aria-hidden="true"
       >
         <div className="w-full h-full">
-          <Plasma
-            color="#AD46FF"
-            speed={0.6}
-            direction="forward"
-            scale={1.2}
-            opacity={0.6}
-            mouseInteractive={true}
-            className="w-full h-full"
-            style={{ width: '100%', height: '100%' }}
-          />
         </div>
       </div>
 

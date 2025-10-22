@@ -14,18 +14,7 @@ export default function HeaderBg({
   return (
     <section className="relative -mt-20 w-full h-screen min-h-[600px] isolate overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#AD46FF"
-          raysSpeed={1.5}
-          lightSpread={20}
-          rayLength={1.2}
-          followMouse={true}
-          mouseInfluence={0.1}
-          noiseAmount={0.1}
-          distortion={0.05}
-          className="opacity-70"
-        />
+        <LightRays />
       </div>
 
       <div className="mx-auto max-w-5xl px-6 py-auto md:py-24 lg:py-28 flex items-center min-h-[600px]">

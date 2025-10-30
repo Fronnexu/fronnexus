@@ -12,8 +12,8 @@ export default function HeaderBg({
   buttonLink = '',
 }) {
   return (
-    <section className="relative -mt-20 w-full h-screen min-h-[600px] isolate overflow-hidden">
-      <div className="absolute inset-0 -z-10">
+    <section className="relative -mt-20  w-full h-screen min-h-[600px] isolate overflow-hidden">
+      <div className="absolute inset-0 -z-10 ">
         <LightRays
           raysOrigin="top-center"
           raysColor="#AD46FF"

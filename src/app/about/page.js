@@ -4,6 +4,7 @@ import LazyMount from '../../components/utils/LazyMount';
 import Main from '../../components/about/Main';
 import Skills from '../../components/about/Skills';
 import HeaderBg from '../../components/Header/HeaderBg';
+import SegundaCTA from '../../components/cta/segundacta/SegundaCTA';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       </LazyMount>
       <LazyMount rootMargin="400px">
         <Main />
+        <SegundaCTA />
       </LazyMount>
     </section>
   );

@@ -4,8 +4,60 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { getWorkers } from '../../services/supabase';
+import { Briefcase, Code2, Github, Instagram, Linkedin } from "lucide-react";
 
+
+
+
+function AgencyCard() {
+  return (
+    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 
+                     flex flex-col md:flex-row-reverse md:w-7xl md:mx-auto m-4">
+      <div className="md:w-1/2 justify-center flex items-center pt-6">
+        <img
+          src="/assets/image/logosymbol_1x1_high_quality.png"
+          alt="A"
+          className="h-60 object-cover md:rounded-r-2xl md:rounded-l-none"
+        />
+      </div>
+
+      <div className="p-6 md:w-1/2 flex flex-col justify-center"> 
+        <span className="inline-flex items-center px-3 py-1 rounded-md text-sm border-1 text-gray-700 font-medium">
+          <Briefcase size={16} className="mr-1" />
+          AGENCY
+        </span>
+        <h2 className="mt-2 text-2xl font-bold text-gray-900">FRONEXUS</h2>
+        <p className="flex items-center text-gray-600 text-sm mt-1">
+          <Code2 size={16} className="mr-1" />
+          Tech Agency
+        </p>
+        <div className="mt-3 text-gray-700 text-sm leading-relaxed">
+          <h3 className="font-semibold mb-1">About the Agency</h3>
+          <p>
+            We are a digital agency specialized in front-end development, design, data analysis, and QA. 
+            Our mission is to deliver high-quality, custom solutions that help businesses thrive in a digital-first world. 
+            We believe in remote work, borderless collaboration, and clear communication. 
+            Operating globally, our team is multicultural, adaptable, and focused on precision — 
+            always delivering pixel-perfect results with high performance.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          <a href="#" className="flex items-center gap-1 px-2 py-2 rounded-lg border border-gray-200 text-sm font-medium hover:bg-gray-100 transition">
+            <Github size={16} /> GitHub
+          </a>
+          <a href="#" className="flex items-center gap-1 px-2 py-2 rounded-lg border border-gray-200 text-sm font-medium hover:bg-gray-100 transition">
+            <Linkedin size={16} /> LinkedIn
+          </a>
+          <a href="#" className="flex items-center gap-1 px-2 py-2 rounded-lg border border-gray-200 text-sm font-medium hover:bg-gray-100 transition">
+            <Instagram size={16} /> Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 export default function Main() {
+  /*
   const [people, setPeople] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +89,8 @@ export default function Main() {
 
   return (
     <section className="flex flex-col gap-16 py-12">
-      {people.map((p, idx) => (
+      <AgencyCard />
+     {people.map((p, idx) => (
         <article
           key={p.id ?? `${p.name}-${idx}`}
           className={[
@@ -117,4 +170,10 @@ export default function Main() {
       ))}
     </section>
   );
+  */
+ return (
+    <section className="flex flex-col gap-16 py-12">
+      <AgencyCard />
+      </section>
+ );
 }

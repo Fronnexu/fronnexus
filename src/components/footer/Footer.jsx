@@ -6,25 +6,18 @@ import Image from 'next/image';
 
 function usePrefersDark() {
   const [isDark, setIsDark] = useState(false);
-
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
-
     const handleChange = (e) => setIsDark(e.matches);
     setIsDark(mq.matches);
-
-    // Compatibilidade com navegadores antigos
     if (mq.addEventListener) mq.addEventListener('change', handleChange);
     else mq.addListener(handleChange);
-
     return () => {
-      if (mq.removeEventListener)
-        mq.removeEventListener('change', handleChange);
+      if (mq.removeEventListener) mq.removeEventListener('change', handleChange);
       else mq.removeListener(handleChange);
     };
   }, []);
-
   return isDark;
 }
 
@@ -32,118 +25,105 @@ function iconPath(name, isDark) {
   return `/assets/icons/${name}${isDark ? 'Dark' : ''}.svg`;
 }
 
+const FOOTER_LINKS = [
+  { name: 'Home', href: '/' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Get in Touch', href: '/contact' },
+];
+
+const SOCIAL = [
+  { name: 'github', label: 'GitHub', href: 'https://github.com/Fronnexu' },
+  { name: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/company/fronnexus' },
+  { name: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/fronnexus' },
+];
+
 export default function Footer() {
   const isDark = usePrefersDark();
 
   return (
-    <footer className="p-6 w-full bg-background">
-      <div className="flex justify-between items-center w-full md:w-auto md:order-1">
-        {/* Logo */}
-        <Image
-          src="/assets/icons/logo.svg"
-          alt="Logo da empresa"
-          width={150}
-          height={150}
-          className="mb-4 md:mb-0 h-auto w-auto"
-          priority
-        />
-
-        {/* Social icons */}
-        <div className="flex gap-3">
-          <Link href="#" target="_blank" aria-label="Instagram">
+    <footer className="border-t border-[var(--stroke-container-divider)] bg-background">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+          {/* Brand */}
+          <div>
             <Image
-              src={iconPath('instagram', isDark)}
-              alt="Instagram"
-              width={24}
-              height={24}
-              className="size-6 hover:opacity-80 transition-opacity"
+              src="/assets/icons/logo.svg"
+              alt="Fronnexus Logo"
+              width={130}
+              height={36}
+              className="h-auto w-auto mb-4"
+              priority
             />
-          </Link>
+            <p className="text-sm text-primary-70 max-w-xs leading-relaxed">
+              We are a global digital agency crafting high-performance websites, apps,
+              and data-driven solutions. From concept to launch, Fronnexus turns your
+              ideas into seamless digital experiences that drive real business growth.
+            </p>
+          </div>
 
-          <Link href="#" target="_blank" aria-label="WhatsApp">
-            <Image
-              src={iconPath('whatsapp', isDark)}
-              alt="WhatsApp"
-              width={24}
-              height={24}
-              className="size-6 hover:opacity-80 transition-opacity"
-            />
-          </Link>
+          {/* Navigation */}
+          <div>
+            <h4 className="text-xs uppercase tracking-wider text-primary-70 mb-4 font-semibold">
+              Navigation
+            </h4>
+            <ul className="space-y-2.5">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-primary hover:text-[#8b5cf6] transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <Link href="#" target="_blank" aria-label="LinkedIn">
-            <Image
-              src={iconPath('linkedin', isDark)}
-              alt="LinkedIn"
-              width={24}
-              height={24}
-              className="size-6 hover:opacity-80 transition-opacity"
-            />
-          </Link>
-
-          <Link href="#" target="_blank" aria-label="Facebook">
-            <Image
-              src={iconPath('facebook', isDark)}
-              alt="Facebook"
-              width={24}
-              height={24}
-              className="size-6 hover:opacity-80 transition-opacity"
-            />
-          </Link>
-
-          <Link href="#" target="_blank" aria-label="GitHub">
-            <Image
-              src={iconPath('github', isDark)}
-              alt="GitHub"
-              width={24}
-              height={24}
-              className="size-6 hover:opacity-80 transition-opacity"
-            />
-          </Link>
-        </div>
-      </div>
-
-      {/* Navegação e créditos */}
-      <div className="flex flex-col md:justify-between md:flex-row md:items-center md:gap-6 mt-6 md:mt-0 md:order-2">
-        <div className="mt-6 md:mt-0 text-sm text-primary md:ml-6 order-2 md:order-1">
-          © {new Date().getFullYear()} Fronnexus. All rights reserved.
+          {/* Social */}
+          <div>
+            <h4 className="text-xs uppercase tracking-wider text-primary-70 mb-4 font-semibold">
+              Connect With Us
+            </h4>
+            <div className="flex flex-wrap gap-3">
+              {SOCIAL.map((s) => (
+                <Link
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg border border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)] flex items-center justify-center hover:border-[rgba(139,92,246,0.3)] hover:bg-[rgba(139,92,246,0.05)] transition-all"
+                >
+                  <Image
+                    src={iconPath(s.name, isDark)}
+                    alt={s.label}
+                    width={18}
+                    height={18}
+                    className="size-[18px]"
+                  />
+                </Link>
+              ))}
+            </div>
+            <p className="text-xs text-primary-70 mt-4 leading-relaxed">
+              Follow us for updates on new projects, design tips, and behind-the-scenes content.
+            </p>
+          </div>
         </div>
 
-        <nav className="order-1 md:order-2">
-          <ul className="space-y-2 ml-4 gap-2.5 md:flex md:space-y-0 md:space-x-6">
-            <li>
-              <Link
-                href="/"
-                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
-              >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/projects"
-                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="text-primary p-2 md:p-0 hover:text-purple-500 transition-colors"
-              >
-                Get in Touch
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        {/* Bottom bar */}
+        <div className="mt-10 pt-6 border-t border-[var(--stroke-container-divider)] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-primary-70">
+            &copy; {new Date().getFullYear()} Fronnexus. All rights reserved.
+          </p>
+          <Link
+            href="/terms/responsability"
+            className="text-xs text-primary-70 hover:text-[#8b5cf6] transition-colors"
+          >
+            Terms &amp; Privacy
+          </Link>
+        </div>
       </div>
     </footer>
   );

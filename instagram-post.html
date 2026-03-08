@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fronnexus Instagram Post</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #1a1a2e;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+  }
+
+  .post-container {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0f;
+    border-radius: 12px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  }
+
+  /* Animated gradient background */
+  .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 70%);
+  }
+
+  /* Grid pattern */
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Floating orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 8s ease-in-out infinite;
+  }
+  .orb-1 {
+    width: 400px; height: 400px;
+    top: -100px; left: -50px;
+    background: rgba(139, 92, 246, 0.3);
+    animation-delay: 0s;
+  }
+  .orb-2 {
+    width: 300px; height: 300px;
+    bottom: -50px; right: -30px;
+    background: rgba(124, 58, 237, 0.25);
+    animation-delay: -3s;
+  }
+  .orb-3 {
+    width: 200px; height: 200px;
+    top: 50%; left: 60%;
+    background: rgba(167, 139, 250, 0.15);
+    animation-delay: -5s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  /* Content */
+  .content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px;
+  }
+
+  /* Top section */
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.1);
+    font-size: 14px;
+    font-weight: 600;
+    color: #a78bfa;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .badge-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #8b5cf6;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: -0.5px;
+  }
+
+  /* Middle - Main content */
+  .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .headline {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -3px;
+    color: #ffffff;
+  }
+
+  .headline .gradient {
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .description {
+    font-size: 20px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 700px;
+    font-weight: 400;
+  }
+
+  /* Services row */
+  .services {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .service-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: rgba(139, 92, 246, 0.08);
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .service-tag .icon {
+    font-size: 18px;
+  }
+
+  /* Bottom section */
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    letter-spacing: -0.3px;
+  }
+
+  .cta-arrow {
+    font-size: 20px;
+    transition: transform 0.3s;
+  }
+
+  .social-handle {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: -0.3px;
+  }
+
+  /* Glass card accent line */
+  .accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #8b5cf6, #a78bfa, #8b5cf6, transparent);
+  }
+
+  /* Decorative corner elements */
+  .corner-decoration {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-radius: 20px;
+  }
+  .corner-tl {
+    top: 30px; left: 30px;
+    border-right: none; border-bottom: none;
+    border-radius: 20px 0 0 0;
+  }
+  .corner-br {
+    bottom: 30px; right: 30px;
+    border-left: none; border-top: none;
+    border-radius: 0 0 20px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="post-container">
+    <!-- Background effects -->
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="corner-decoration corner-tl"></div>
+    <div class="corner-decoration corner-br"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Top -->
+      <div class="top">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Digital Agency
+        </div>
+        <div class="logo-text">fronnexus</div>
+      </div>
+
+      <!-- Middle -->
+      <div class="middle">
+        <h1 class="headline">
+          We Build<br>
+          <span class="gradient">Websites That</span><br>
+          Grow Your<br>
+          Business.
+        </h1>
+        <p class="description">
+          Custom web development, design, and data solutions for brands ready to scale their digital presence.
+        </p>
+        <div class="services">
+          <span class="service-tag"><span class="icon">⚡</span> Front-End Dev</span>
+          <span class="service-tag"><span class="icon">🎨</span> UI/UX Design</span>
+          <span class="service-tag"><span class="icon">📊</span> Data Analysis</span>
+          <span class="service-tag"><span class="icon">✅</span> QA Testing</span>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+      <div class="bottom">
+        <div class="cta-button">
+          Start Your Project <span class="cta-arrow">→</span>
+        </div>
+        <div class="social-handle">@fronnexus</div>
+      </div>
+    </div>
+
+    <div class="accent-line"></div>
+  </div>
+</body>
+</html>

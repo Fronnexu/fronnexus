@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import MobileMenu from '../modals/MobileMenu';
@@ -17,7 +17,14 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const { links, cta } = useMemo(() => {
     const links = NAV_ITEMS.filter((i) => !i.isButton);
@@ -26,36 +33,28 @@ export default function Header() {
   }, []);
 
   const isActive = (href) => {
-    // destaca exatamente a rota ou prefixo para páginas internas (/projects/slug)
     if (href === '/') return pathname === '/';
     return pathname === href || pathname.startsWith(href + '/');
   };
 
   return (
-    <header
-      className="
-        sticky top-4 z-50 flex justify-center px-4
-      "
-    >
+    <header className="sticky top-4 z-50 flex justify-center px-4">
       <nav
         role="navigation"
         aria-label="Primary"
-        className="
-          relative flex items-center w-full max-w-6xl gap-3
-          px-4 sm:px-6 py-2.5
-          rounded-3xl shadow-lg
-          bg-white/10 backdrop-blur-xl
-          border border-white/20
-        "
+        className={[
+          'relative flex items-center w-full max-w-5xl gap-3',
+          'px-4 sm:px-6 py-2.5',
+          'rounded-2xl transition-all duration-300',
+          scrolled
+            ? 'bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] shadow-lg shadow-[var(--glass-shadow)]'
+            : 'bg-transparent border border-transparent',
+        ].join(' ')}
       >
-        {/* Glow sutil */}
-        <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10" />
-        <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-pink-500/10" />
-
         {/* Logo */}
         <Link
           href="/"
-          className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded-xl"
+          className="flex-shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#8b5cf6] rounded-xl"
         >
           <Image
             src="/assets/icons/logo.svg"
@@ -68,7 +67,7 @@ export default function Header() {
         </Link>
 
         {/* Links desktop */}
-        <div className="hidden lg:flex items-center gap-7 ml-auto">
+        <div className="hidden lg:flex items-center gap-1 ml-auto">
           {links.map((item) => {
             const active = isActive(item.href);
             return (
@@ -76,14 +75,17 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={[
-                  'font-sans text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded-md px-1.5 py-1',
+                  'relative text-sm px-3 py-2 rounded-lg transition-all duration-200',
                   active
-                    ? 'text-purple-500'
-                    : 'text-primary hover:text-purple-400',
+                    ? 'text-[#8b5cf6] font-medium'
+                    : 'text-primary hover:text-[#8b5cf6] hover:bg-[var(--surface-subtle)]',
                 ].join(' ')}
                 aria-current={active ? 'page' : undefined}
               >
                 {item.name}
+                {active && (
+                  <span className="absolute bottom-0.5 left-3 right-3 h-0.5 rounded-full bg-[#8b5cf6]" />
+                )}
               </Link>
             );
           })}
@@ -91,14 +93,11 @@ export default function Header() {
           {cta && (
             <Link
               href={cta.href}
-              className="
-                inline-flex items-center text-sm font-medium
-                px-5 py-2 rounded-full
-                bg-white text-t-dark-btn shadow-lg
-                hover:bg-purple-50
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400
-                transition-colors
-              "
+              className="btn-shine ml-3 inline-flex items-center text-sm font-medium
+                px-5 py-2 rounded-xl
+                bg-[#8b5cf6] text-white shadow-md shadow-[rgba(139,92,246,0.2)]
+                hover:bg-[#7c3aed] hover:shadow-lg hover:shadow-[rgba(139,92,246,0.3)]
+                transition-all duration-200"
             >
               {cta.name}
             </Link>
@@ -107,11 +106,7 @@ export default function Header() {
 
         {/* Toggle mobile */}
         <button
-          className="
-            lg:hidden ml-auto p-2 rounded-full
-            text-primary hover:bg-white/20
-            focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400
-          "
+          className="lg:hidden ml-auto p-2 rounded-xl text-primary hover:bg-[var(--surface-subtle)] transition-colors"
           onClick={() => setMobileMenuOpen((prev) => !prev)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={mobileMenuOpen}

@@ -32,15 +32,15 @@ export default function MobileMenu({ isOpen, onClose, navItems }) {
   return (
     <div
       ref={menuRef}
-      className="fixed z-40 top-[60px] right-7 p-4 justify-center bg-gradient-radial-white rounded-xl shadow-2xl transition-all duration-400 ease-in-out transform scale-100 opacity-100"
+      className="fixed z-40 top-[60px] right-4 sm:right-7 p-2 rounded-xl border border-[var(--stroke-container-divider)] bg-[var(--glass-bg)] backdrop-blur-xl shadow-xl transition-all duration-300"
     >
-      <nav className="flex">
+      <nav>
         <ul className="divide-y divide-[var(--stroke-container-divider)]">
           {navItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="block py-2 px-2 text-base text-primary font-sans rounded-lg transition-colors"
+                className="block py-2.5 px-4 text-sm text-primary font-medium rounded-lg hover:bg-[rgba(139,92,246,0.08)] transition-colors"
                 onClick={onClose}
               >
                 {item.name}

@@ -1,59 +1,71 @@
-/**
- * @author gabrielvettorazzi
- */
-import React from 'react';
 import { FiMonitor, FiPenTool, FiDatabase, FiCheckCircle } from 'react-icons/fi';
+import ScrollReveal from '../utils/ScrollReveal';
 
 const SERVICES_ITEMS = [
-    {
-        icon: <FiMonitor size={48} className="bg-background" />,
-        title: 'Front-End Development',
-    },
-    {
-        icon: <FiPenTool size={48} className="bg-background" />,
-        title: 'Web Design',
-    },
-    {
-        icon: <FiDatabase size={48} className="bg-background" />,
-        title: 'Data Analysis',
-    },
-    {
-        icon: <FiCheckCircle size={48} className="bg-background" />,
-        title: 'Quality Assurance (QA)',
-    },
+  {
+    icon: <FiMonitor size={28} />,
+    title: 'Front-End Development',
+    description:
+      'We build fast, accessible, and responsive interfaces using React, Next.js, and Tailwind CSS. Our code is clean, scalable, and optimized for performance — delivering sub-second load times and smooth user interactions.',
+  },
+  {
+    icon: <FiPenTool size={28} />,
+    title: 'Web Design & UI/UX',
+    description:
+      'From wireframes to pixel-perfect layouts, we design user-centered experiences that look stunning and convert. We use Figma for prototyping and iterate closely with clients to ensure every detail aligns with their brand.',
+  },
+  {
+    icon: <FiDatabase size={28} />,
+    title: 'Data Analysis & Insights',
+    description:
+      'We turn raw data into actionable dashboards, reports, and visualizations that drive smarter decisions. Whether it\'s tracking KPIs, user behavior, or market trends — we make your data work for you.',
+  },
+  {
+    icon: <FiCheckCircle size={28} />,
+    title: 'Quality Assurance',
+    description:
+      'Rigorous testing across devices and browsers ensures every release is stable, performant, and bug-free. We use automated and manual QA workflows to catch issues before they reach your users.',
+  },
 ];
 
 export default function ServicesSection() {
-    return (
-        <section className="bg-background pt-20 pb-32 py-16 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center w-[324px] md:w-[1128px] mx-auto mb-12">
-                    <h2 className="text-4xl font-bold text-primary mb-4">Services</h2>
-                    <p className="text-[20px] font-mono">
-                        From visual identity to flawless code and data-driven decisions, we offer a full stack of custom digital services. Our team blends design creativity, high-quality front-end development, data analysis, and rigorous QA to deliver seamless digital experiences.
-                    </p>
-                </div>
+  return (
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.08)] text-[#a78bfa] mb-4">
+              What We Do
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary tracking-tight">
+              End-to-End Digital Services
+            </h2>
+            <p className="mt-4 text-primary-70 max-w-2xl mx-auto text-base leading-relaxed">
+              From visual identity to flawless code and data-driven strategy, Fronnexus
+              delivers a complete suite of digital services tailored to help your business
+              stand out, perform better, and grow faster in an increasingly competitive market.
+            </p>
+          </div>
+        </ScrollReveal>
 
-                {/* Container para os cards de serviço */}
-                <div className="grid grid-cols-1 m-3 md:grid-cols-38  gap-6">
-                    {SERVICES_ITEMS.map((service, index) => (
-                        <div
-                            key={index}
-                            className={`flex items-center gap-4 p-4 bg-background rounded-3xl shadow-lg shadow-gray-400 border border-gray-200 transition-transform duration-300 hover:scale-105
-                            ${index === 0 ? 'md:col-start-4 md:col-span-14 ' : ''} 
-                            ${index === 1 ? 'md:col-start-18 md:col-span-14' : ''}
-                             ${index === 2 ? 'md:col-start-10 md:col-span-14' : ''}
-                             ${index === 3 ? 'md:col-start-24 md:col-span-14' : ''}
-                            `}
-                     >
-                    {service.icon}
-                    <h3 className="text-xl font-mono text-primary-70">
-                        {service.title}
-                    </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SERVICES_ITEMS.map((service, index) => (
+            <ScrollReveal key={index} delay={index * 100}>
+              <div className="glass-card group rounded-2xl p-6 h-full flex flex-col">
+                <div className="w-12 h-12 rounded-xl bg-[rgba(139,92,246,0.1)] flex items-center justify-center text-[#8b5cf6] mb-4 transition-colors group-hover:bg-[rgba(139,92,246,0.15)]">
+                  {service.icon}
                 </div>
+                <h3 className="text-lg font-semibold text-primary mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-primary-70 leading-relaxed flex-1">
+                  {service.description}
+                </p>
+              </div>
+            </ScrollReveal>
           ))}
-            </div>
         </div>
-    </section >
+      </div>
+    </section>
   );
 }

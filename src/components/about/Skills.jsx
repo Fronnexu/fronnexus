@@ -1,19 +1,21 @@
-// components/about/Skills.jsx
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Code2 } from 'lucide-react';
+
+const SKILLS = [
+  'Tailwind CSS',
+  'Figma',
+  'React',
+  'Next.js',
+  'Node.js',
+  'TypeScript',
+  'Supabase',
+  'Git',
+];
 
 export default function Skills() {
-  const skills = [
-    { name: 'Tailwind', icon: <Code2 size={20} /> },
-    { name: 'Figma', icon: <Code2 size={20} /> },
-    { name: 'React', icon: <Code2 size={20} /> },
-    { name: 'Next.js', icon: <Code2 size={20} /> },
-    { name: 'Node.js', icon: <Code2 size={20} /> },
-  ];
-
   const [reduced, setReduced] = useState(false);
+
   useEffect(() => {
     const m = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     const update = () => setReduced(!!m?.matches);
@@ -22,26 +24,24 @@ export default function Skills() {
     return () => m?.removeEventListener?.('change', update);
   }, []);
 
-  const list = [...skills, ...skills, ...skills];
+  const list = [...SKILLS, ...SKILLS, ...SKILLS];
 
   return (
-    <section className="relative w-full bg-background p-4 overflow-hidden">
+    <section className="relative w-full py-6 overflow-hidden border-y border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)]">
       <div
-        className={[
-          'flex gap-20 whitespace-nowrap',
-          reduced ? '' : 'animate-marquee',
-        ].join(' ')}
+        className={`flex gap-12 whitespace-nowrap ${reduced ? '' : 'animate-marquee'}`}
         style={{ willChange: reduced ? 'auto' : 'transform' }}
       >
         {list.map((skill, index) => {
-          const repeat = index >= skills.length;
+          const isRepeat = index >= SKILLS.length;
           return (
             <div
-              key={`${skill.name}-${index}`}
-              className="flex items-center gap-2 text-lg font-medium text-primary"
-              aria-hidden={repeat ? 'true' : 'false'}
+              key={`${skill}-${index}`}
+              className="flex items-center gap-2.5 text-sm font-medium text-primary-70"
+              aria-hidden={isRepeat ? 'true' : 'false'}
             >
-              {skill.icon} {skill.name}
+              <span className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]" />
+              {skill}
             </div>
           );
         })}

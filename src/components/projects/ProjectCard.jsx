@@ -12,112 +12,95 @@ export default function ProjectCard({
   return (
     <article
       className={[
-        'rounded-3xl border border-color-stroke-container-divider shadow-lg bg-background/5 backdrop-blur',
-        'overflow-hidden',
-        'h-[535px]',
+        'glass-card rounded-2xl overflow-hidden',
         'md:grid md:grid-cols-12 md:items-stretch',
         reversed ? 'md:[&>div:first-child]:order-2' : '',
       ].join(' ')}
     >
-      {/* imagem */}
-      <div className="md:col-span-6 h-full relative overflow-hidden">
-        <div className="h-full w-full p-[10px]">
-          <div className="h-[515px] w-full rounded-2xl overflow-hidden bg-gradient-to-br from-purple-100/30 to-purple-300/10 flex items-center justify-center">
-            <img
-              src={url_image || '/placeholder.svg'}
-              alt={nome || 'Projeto'}
-              className="h-full w-full object-cover object-center rounded-2xl transition-transform duration-700 ease-in-out hover:scale-105"
-              loading="lazy"
-            />
-          </div>
+      {/* Image */}
+      <div className="md:col-span-6 relative overflow-hidden">
+        <div className="h-64 md:h-full w-full">
+          <img
+            src={url_image || '/placeholder.svg'}
+            alt={nome || 'Project'}
+            className="h-full w-full object-cover transition-transform duration-700 ease-in-out hover:scale-105"
+            loading="lazy"
+          />
         </div>
       </div>
 
-      {/* conteúdo */}
-      <div
-        className={[
-          'md:col-span-6 bg-gradient-to-b from-color-gradient-border-white to-transparent',
-          'h-full overflow-auto scroll-purple', // usa a scrollbar roxa estilizada
-          'p-5 md:p-7',
-        ].join(' ')}
-      >
-        {/* top bar */}
+      {/* Content */}
+      <div className="md:col-span-6 p-6 md:p-8 flex flex-col justify-center">
+        {/* Tech count badge */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="inline-flex items-center gap-2 text-xs px-2.5 py-1 rounded-xl border border-color-stroke-container-divider bg-color-secundary">
-            <span className="i-lucide-layout-grid"></span>
-            {tecnologias.length} componentes
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)] text-primary-70">
+            {tecnologias.length} technologies
           </span>
         </div>
 
-        <h3 className="text-2xl font-semibold tracking-tight text-foreground">
-          {nome || 'Projeto sem nome'}
+        <h3 className="text-2xl font-semibold tracking-tight text-primary">
+          {nome || 'Unnamed Project'}
         </h3>
 
-        <div className="mt-2 text-sm text-primary-70 flex items-center gap-2">
-          <span className="i-lucide-sparkles animate-pulse" />
-          <span>Tech Stack</span>
-        </div>
-
-        {/* tags */}
-        <div className="mt-3 flex flex-wrap gap-2">
+        {/* Tech tags */}
+        <div className="mt-4 flex flex-wrap gap-2">
           {tecnologias.length > 0 ? (
             tecnologias.map((t, i) => (
               <span
                 key={i}
-                className="text-xs px-2.5 py-1 rounded-full border border-color-stroke-container-divider bg-color-secundary text-foreground"
+                className="text-xs px-2.5 py-1 rounded-full border border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)] text-primary-70"
               >
                 {String(t).toLowerCase()}
               </span>
             ))
           ) : (
-            <span className="text-xs px-2.5 py-1 rounded-full border border-color-stroke-container-divider bg-color-secundary text-foreground">
+            <span className="text-xs px-2.5 py-1 rounded-full border border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)] text-primary-70">
               n/a
             </span>
           )}
         </div>
 
-        {/* seção descrição */}
+        {/* Description */}
         <div className="mt-6 space-y-4">
           <div>
-            <p className="text-xs uppercase tracking-widest text-primary-70">
-              Project name
+            <p className="text-xs uppercase tracking-widest text-primary-70 mb-1">
+              About
             </p>
-            <p className="text-sm text-foreground">{nome || '—'}</p>
-          </div>
-
-          <div>
-            <p className="text-xs uppercase tracking-widest text-primary-70">
-              Challenges
-            </p>
-            <p className="text-sm text-foreground leading-relaxed">
-              {long_description || 'Descrição não disponível.'}
+            <p className="text-sm text-primary leading-relaxed">
+              {long_description || 'Description not available.'}
             </p>
           </div>
         </div>
 
-        {/* ações */}
+        {/* Actions */}
         <div className="mt-6 flex flex-wrap gap-3">
-          {repositorio ? (
+          {repositorio && (
             <a
               href={repositorio}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm px-3 py-2 rounded-xl border border-color-stroke-container-divider bg-color-secundary hover:bg-color-primary-70 transition text-foreground"
+              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-xl border border-[var(--stroke-container-divider)] bg-[var(--surface-subtle)] text-primary hover:border-[rgba(139,92,246,0.3)] transition-all"
             >
-              <span className="i-lucide-code-2" /> Code
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              Code
             </a>
-          ) : null}
+          )}
 
-          {deploy ? (
+          {deploy && (
             <a
               href={deploy}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-gradient-to-r from-indigo-50 to-pink-50 text-sm font-medium text-t-dark-btn hover:from-indigo-100 hover:to-pink-100 transition"
+              className="btn-shine inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#8b5cf6] text-sm font-medium text-white shadow-lg shadow-[rgba(139,92,246,0.2)] hover:bg-[#7c3aed] transition-all"
             >
-              <span className="i-lucide-globe" /> Website
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+              </svg>
+              Website
             </a>
-          ) : null}
+          )}
         </div>
       </div>
     </article>
